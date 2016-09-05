@@ -62,9 +62,11 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-X = [ones(m,1),X];
 
-z2 = X * Theta1';
+% Forward propagation
+a1 = [ones(m,1),X];
+
+z2 = a1 * Theta1';
 a2 = sigmoid(z2);
 a2 = [ones(size(z2,1),1),a2];
 
@@ -83,10 +85,24 @@ J = - sum(sum(yy.*log(a3) + (1-yy).*log(1-a3))) / m ;
 J = J + lambda * ( sum(sum( Theta1(:,2:end).^2 )) + sum(sum( Theta2(:,2:end).^2 )) ) / (2*m);
 
 
+% Back Propagation
+
+error3  = a3 - yy;
+dat = (error3 * Theta2);
+dat = dat(:, 2:end);
+error2 =  dat .* sigmoidGradient(z2);
+
+delta2 = error3'* a2;
+delta1 = error2'* a1;
+
+Theta2_grad = delta2/m;
+Theta1_grad = delta1/m;
 
 
+% Back Propagation with regularization
 
-
+Theta2_grad(:,2:end) = Theta2_grad(:,2:end) + Theta2(:,2:end)*lambda/m;
+Theta1_grad(:,2:end) = Theta1_grad(:,2:end) + Theta1(:,2:end)*lambda/m;
 
 % -------------------------------------------------------------
 
