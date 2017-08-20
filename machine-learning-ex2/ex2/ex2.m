@@ -7,7 +7,7 @@
 %  regression exercise. You will need to complete the following functions 
 %  in this exericse:
 %
-%     sigmoid.m
+%     sigmoid.m 
 %     costFunction.m
 %     predict.m
 %     costFunctionReg.m
