@@ -8,7 +8,7 @@ Created on Sun Aug 20 18:39:11 2017
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy
-
+from ex2 import plotdata, map_feature, sigmoid, plot_decision_boundary, predict
 
 def cost_function_reg(theta, X, y, ld):
     m = y.shape[0]
