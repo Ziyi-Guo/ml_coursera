@@ -52,7 +52,7 @@ fprintf('\nTraining Linear SVM ...\n')
 % boundary varies (e.g., try C = 1000)
 C = 1;
 model = svmTrain(X, y, C, @linearKernel, 1e-3, 20);
-visualizeBoundaryLinear(X, y, model);
+visualizeBoundaryLinear(X, y, model); 
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
