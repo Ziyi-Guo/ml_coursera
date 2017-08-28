@@ -18,13 +18,13 @@ end
 
 % Plot the SVM boundary
 
-disp(vals);
-fprintf('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcc ...\n');
+%disp(vals);
+%fprintf('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcc ...\n');
 
 
 hold on
-fprintf('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcc ...\n');
-contour(X1, X2, vals, [0 0.5], 'Color', 'b');
+%fprintf('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcc ...\n');
+contour(X1, X2, vals, [0 0.1], 'Color', 'b');
 hold off;
 
 end
