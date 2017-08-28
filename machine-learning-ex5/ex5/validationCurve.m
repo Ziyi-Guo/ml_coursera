@@ -39,7 +39,12 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
-
+for i = 1:length(lambda_vec)
+   theta = trainLinearReg(X,y,lambda_vec(i));%对于每个lambda,训练出模型参数theta
+   %compute jcv and jval without regularization,causse last arguments(lambda) is zero 
+   error_train(i) = linearRegCostFunction(X, y, theta, 0);%计算训练误差
+   error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);%计算交叉验证误差
+end
 
 
 
