@@ -46,10 +46,11 @@ fprintf(' x = [%.0f %.0f], y = %.0f \n', [X(1:10,:) y(1:10,:)]');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
+
 % Scale features and set them to zero mean
 fprintf('Normalizing Features ...\n');
 
-[X mu sigma] = featureNormalize(X);
+[X,mu,sigma] = featureNormalize(X);
 
 % Add intercept term to X
 X = [ones(m, 1) X];
@@ -82,8 +83,8 @@ X = [ones(m, 1) X];
 fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
-alpha = 0.09;
-num_iters = 400;
+alpha = 0.01;
+num_iters = 1000;
 
 % Init Theta and Run Gradient Descent
 theta = zeros(3, 1);
@@ -104,10 +105,11 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-temp_x = [1650,3];
-temp_x = (temp_x - mu)./sigma;
-temp_x = [1,temp_x];
-price = theta' * temp_x'; % You should change this
+x_predict = [1 1650 3];  
+for i=2:3  
+    x_predict(i) = (x_predict(i) - mu(i-1)) / sigma(i-1);  
+end  
+price = x_predict * theta;   % You should change this
 
 
 % ============================================================
@@ -152,7 +154,8 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = theta' * [1,1650,3]'; % You should change this
+x_predict = [1 1650 3];  
+price = x_predict * theta;   % You should change this
 
 
 % ============================================================
