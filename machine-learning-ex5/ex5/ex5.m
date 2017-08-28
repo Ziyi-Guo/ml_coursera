@@ -1,3 +1,5 @@
+%
+%
 %% Machine Learning Online Class
 %  Exercise 5 | Regularized Linear Regression and Bias-Variance
 %
@@ -33,7 +35,8 @@ load ('ex5data1.mat');
 
 % m = Number of examples
 m = size(X, 1);
-
+disp(X');
+disp(Xval);
 % Plot training data
 plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
 xlabel('Change in water level (x)');
@@ -60,7 +63,6 @@ pause;
 %  You should now implement the gradient for regularized linear 
 %  regression.
 %
-
 theta = [1 ; 1];
 [J, grad] = linearRegCostFunction([ones(m, 1) X], y, theta, 1);
 
