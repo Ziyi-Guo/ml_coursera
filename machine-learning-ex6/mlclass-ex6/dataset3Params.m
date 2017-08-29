@@ -23,7 +23,20 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-
+arr = [0.01 0.03 0.1 0.3 1 3 10 30 100];
+minError = Inf;
+for cC = arr
+    for sSigma = arr
+        curParam = svmTrain(X, y, cC, @(x1, x2) gaussianKernel(x1, x2, sSigma));
+        predictions = svmPredict(curParam, Xval);
+        curError = mean(double(predictions ~= yval));
+        if minError > curError
+            minError = curError;
+            C = cC;
+            sigma = sSigma;
+        end
+    end
+end
 
 % =========================================================================
 
