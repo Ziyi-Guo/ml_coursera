@@ -23,7 +23,20 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-
+columns = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+maxError = inf;
+for i = 1:length(columns)
+    for j = 1:length(columns)
+        model = svmTrain(X, y, columns(i), @(x1, x2) gaussianKernel(x1, x2, columns(j)));
+        predictions = svmPredict(model, Xval);
+        nowError = mean(double(predictions ~= yval));
+        if(maxError > nowError)
+            maxError = nowError;
+            C = columns(i);
+            sigma = columns(j);
+        end
+    end
+end
 
 % =========================================================================
 
