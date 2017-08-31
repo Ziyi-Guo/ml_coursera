@@ -84,7 +84,20 @@ def plotfit(min_x, max_x, mu, sigma, theta, p):
         error_val[i] = 0.5 / yval.shape[0] * np.sum((Xval.dot(theta) - yval) ** 2)
     return lambda_vec, error_train, error_val
 
+def validation_curve(X, y, Xval, yval):
+    # Selected values of lambda (you should not change this)
+    lambda_vec = np.array([0, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 3, 10]).T
 
+    # Initialize return values
+    error_train = np.zeros((lambda_vec.size, 1))
+    error_val = np.zeros((lambda_vec.size, 1))
+
+    for i in range(0, lambda_vec.size):
+        ld = lambda_vec[i]
+        theta = train_linear_reg(X, y, ld).reshape(X.shape[1], y.shape[1])
+        error_train[i] = 0.5 / X.shape[0] * np.sum((X.dot(theta) - y) ** 2)
+        error_val[i] = 0.5 / yval.shape[0] * np.sum((Xval.dot(theta) - yval) ** 2)
+    return lambda_vec, error_train, error_val
 
 if __name__ == "__main__":
     np.set_printoptions(formatter={'float': '{: 0.5f}'.format}, edgeitems=50, linewidth=150)
