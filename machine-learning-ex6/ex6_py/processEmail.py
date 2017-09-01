@@ -1,4 +1,3 @@
-from string import lower
 from porterStemmer import porterStemmer
 from getVocabList import getVocabList
 import re
@@ -56,7 +55,7 @@ def processEmail(email_contents):
 # ========================== Tokenize Email ===========================
 
 # Output the email to screen as well
-    print '==== Processed Email ====\n'
+    print ('==== Processed Email ====\n')
 
 # Process file
     l = 0
@@ -104,7 +103,10 @@ def processEmail(email_contents):
         # Note: You can use strcmp(str1, str2) to compare two strings (str1 and
         #       str2). It will return 1 only if the two strings are equivalent.
         #
-
+        for i in range(vocabList):
+            if (cmp(str,vocabList[i])):
+                word_indices.append(i)
+                break;
 
 
 
@@ -112,13 +114,13 @@ def processEmail(email_contents):
 
         # Print to screen, ensuring that the output lines are not too long
         if (l + len(str) + 1) > 78:
-            print str
+            print (str)
             l = 0
         else:
-            print str,
+            print (str)
             l = l + len(str) + 1
 
 # Print footer
-    print '\n========================='
+    print ('\n=========================')
     return word_indices
 
