@@ -36,6 +36,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
+
 %% ======================= Part 2: Plotting =======================
 fprintf('Plotting Data ...\n')
 data = load('ex1data1.txt');
